@@ -1,6 +1,5 @@
 provider "aws" {
-  region  = "ap-southeast-2"   # Sydney region
-  version = "~> 2.52"
+  region = "us-east-2"
 }
 
 # Application Load Balancer
@@ -102,7 +101,7 @@ resource "aws_autoscaling_group" "example" {
 
 # Launch configuration to specify how to configure each EC2 instance in a cluster
 resource "aws_launch_configuration" "example" {
-  image_id = "ami-02a599eb01e3b3c5b"  # Ubuntu 18.04 AMI in ap-southeast-2
+  image_id = "ami-0c55b159cbfafe1f0"
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instance.id]
 

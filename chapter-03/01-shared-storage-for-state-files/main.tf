@@ -1,14 +1,13 @@
 provider "aws" {
-  region  = "ap-southeast-2"   # Sydney region
-  version = "~> 2.52"
+  region = "us-east-2"
 }
 
 terraform {
   backend "s3" {
     # Replace this with your bucket name!
-    bucket         = "terraform-up-and-running-state-abirhossain"
+    bucket         = "terraform-up-and-running-state-abirhoss"
     key            = "global/s3/terraform.tfstate"
-    region         = "ap-southeast-2"
+    region         = "us-east-2"
 
     # Replace this with your DynamoDB table name!
     dynamodb_table = "terraform-up-and-running-locks"
@@ -17,7 +16,7 @@ terraform {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-up-and-running-state-abirhossain"
+  bucket = "terraform-up-and-running-state-abirhoss"
 
   # Prevent accidental deletion of this S3 bucket
   lifecycle {

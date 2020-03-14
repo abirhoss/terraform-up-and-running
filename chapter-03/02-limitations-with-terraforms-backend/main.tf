@@ -1,5 +1,5 @@
 provider "aws" {
-  region  = "ap-southeast-2"   # Sydney region
+  region = "us-east-2"
   version = "~> 2.52"
 }
 
