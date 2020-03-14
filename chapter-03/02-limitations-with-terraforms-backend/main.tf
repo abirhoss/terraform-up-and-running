@@ -1,6 +1,5 @@
 provider "aws" {
   region = "us-east-2"
-  version = "~> 2.52"
 }
 
 # Partial configuration. The other settings (e.g., bucket, region) will be
