@@ -2,6 +2,19 @@ provider "aws" {
   region = "us-east-2"
 }
 
+terraform {
+  backend "s3" {
+    # Replace this with your bucket name!
+    bucket         = "terraform-up-and-running-state-abirhoss"
+    key            = "stage/services/webserver-cluster/terraform.tfstate"
+    region         = "us-east-2"
+
+    # Replace this with your DynamoDB table name!
+    dynamodb_table = "terraform-up-and-running-locks"
+    encrypt        = true
+  }
+}
+
 # Application Load Balancer
 resource "aws_lb" "example" {
   name                = "teraform-asg-example"
@@ -142,19 +155,4 @@ data "aws_vpc" "default" {
 # subnet ids within the default vpc
 data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
-}
-
-# Input variables
-
-variable "server_port" {
-  description = "The port the server will use for HTTP requests"
-  type        = number
-  default     = 8080
-}
-
-# Output variables
-
-output "alb_dns_name" {
-  value       = aws_lb.example.dns_name
-  description = "The domain name of the load balancer"
 }
